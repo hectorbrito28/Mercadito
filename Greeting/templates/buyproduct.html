@@ -1,0 +1,62 @@
+{% extends 'layouts/navegation.html' %}
+
+{% block content2 %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>{{product.name}}</title>
+</head>
+<body>
+    
+    <div  class=" m-0  vh-100 row justify-content-center align-items-center" >
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="{{product.productimage.url}}" alt="Card image cap">
+            <div class="card-body">
+            <h5 class="card-title">{{product.name}}</h5>
+            <p class="card-text">{{product.description}}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+            <li class="list-group-item"> <b>Caracteristicas:</b></li> 
+            <li class="list-group-item"><b>Metodos de pago:</b></li>
+            <li class="list-group-item"><b>Metodos de envio:</b></li>
+            </ul>
+            <div class="card-body">
+                
+                {% if lista == False %}
+                    <form action="{% url 'LISTA' %}" method="POST">
+                        {%csrf_token%}
+
+                        <button class="btn btn-primary" name="product" value={{product.id}} >Añadir a lista</button>
+                    </form>
+
+                {% else %}
+                    <form action="{% url 'ELIMINARLISTA' %}" method="POST">
+                        {%csrf_token%}
+
+                        <button class="btn btn-primary" name="product" value={{product.id}} >Eliminar de lista</button>
+                    </form>
+                {% endif %}
+                
+                    
+                
+
+
+                <form action="{% url 'COMPRA' %}" method="POST">
+                    {%csrf_token%}
+
+                    <button class="btn btn-primary" name="product" value={{product.id}} >Comprar</button>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
+
+{% endblock %}

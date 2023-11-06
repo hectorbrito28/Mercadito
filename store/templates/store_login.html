@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercadito Login</title>
+</head>
+<body>
+    
+    <h2>Ingresar a mi cuenta</h2>
+
+    <form method="POST" autocomplete="on" >
+
+        {% csrf_token %}
+        <label>Username</label>
+        {{form.username}}
+        <label>Password</label>
+        {{form.password1}}
+        <label>Confirm your password</label>
+        {{form.password2}}
+
+        <button >Ingresar</button>
+
+    </form>
+
+
+    {% for m in messages %}
+
+        <p>{{m}}</p>
+
+    {% endfor %}
+
+    <a href="{% url 'StoreOptions' %}">Volver atras</a>
+
+</body>
+</html>

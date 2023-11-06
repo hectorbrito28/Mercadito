@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercadito Register</title>
+</head>
+<body>
+
+    <h2>Crear una cuenta</h2>
+
+    {% for m in messages %}
+        <p>{{m}}</p>
+    {% endfor %}
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        {{form.as_p}}
+
+        <button >Crear cuenta</button>
+
+    </form>
+
+   
+
+    <a href="{% url 'StoreOptions' %}">Volver atras</a>
+    
+</body>
+</html>
