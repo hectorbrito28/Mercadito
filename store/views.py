@@ -85,10 +85,22 @@ def register_store(request):
         
         try:
             
+            ModelUseractually = get_user_model()
+            
             if request.POST["password1"] == request.POST["password2"]:
                 
-                UserModel.objects.create_user(username=request.POST["username"],email=request.POST["email"],dni=request.POST["dni"],password=request.POST["password1"]).save()
-                    
+                username = request.POST["username"]
+                password = request.POST["password1"]
+                email = request.POST["email"]
+                dni = request.POST["dni"]
+                
+                
+                newuser = ModelUseractually.objects.create_user(username=username,password=password,email=email,dni=dni)
+                
+                print(newuser)
+                
+                newuser.save()
+                     
                     
                 messages.success(request,"Tu cuenta ha sido creada exitosamente")
                     
@@ -103,12 +115,13 @@ def register_store(request):
             return redirect("Register")
     
 
+@login_required
 #Muestra configuracion de la cuenta(cambio de datos----compras)
 def accountuser(request):
     return render(request,template_name="account.html")
 
 
-
+@login_required
 def settingsuser(request):
     return render(request,template_name="settingsuser.html")
 
