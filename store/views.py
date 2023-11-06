@@ -10,6 +10,7 @@ from .models import UserModel,Product,Mensaje
 from django.contrib import messages
 ##Contraseñas
 from django.contrib.auth.hashers import check_password
+from django.contrib.auth import get_user_model
 #
 from .forms import UserRegisterForm,MensajeForm
 
@@ -42,26 +43,20 @@ def login_store(request):
         return render(request,template_name="store_login.html",context={"form":UserRegisterForm})
     
     else:
-        
-        
+        print(request.POST)
         username = request.POST["username"]
-        #dni = request.POST["dni"]
-        #email = request.POST["email"]
         password1 = request.POST["password1"]
         password2 = request.POST["password2"]
         
-        
-        
-        
+        print(request.POST)
         
         if password1 == password2:
             
-            
             ### AUTENTICAR DNI Y EMAIL MANUALMENTE,,, COLOCAR MENSAJES DE ERROR EN LOS TEMPLATES
             
-            userauthenticate = authenticate(request,username= username,password= password1)
+            userauthenticate = authenticate(request,username= username,password=password1)
+            print(userauthenticate)
             
-           
             
             if userauthenticate is not None:
                 login(request,userauthenticate)
@@ -89,24 +84,22 @@ def register_store(request):
     else:
         
         try:
-            form = UserRegisterForm(request.POST)
             
-            try:
-                if form.is_valid():
-                    form.save()
-                    username = form.cleaned_data.get("username")
-                    return redirect("StoreOptions")
-                else:
-                    messages.error(request,"Las contraseñas no coinciden o el usuario/email ya existe")
-                    return redirect("Register")
+            if request.POST["password1"] == request.POST["password2"]:
+                
+                UserModel.objects.create_user(username=request.POST["username"],email=request.POST["email"],dni=request.POST["dni"],password=request.POST["password1"]).save()
                     
-            except:
+                    
+                messages.success(request,"Tu cuenta ha sido creada exitosamente")
+                    
+                return redirect("StoreOptions")
+                
+            else:
                 messages.error(request,"Las contraseñas no coinciden")
                 return redirect("Register")
-        
+                    
         except:
-            messages.error(request,"Por favor confirma que los datos colocados son correctos")
-        
+            messages.error(request,"El nombre de usuario,email o dni ya existe en la base de datos")
             return redirect("Register")
     
 

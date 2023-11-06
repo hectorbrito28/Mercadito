@@ -6,7 +6,7 @@ from django.conf import settings
 
 #Modificando la tabla user
 class UserModel(AbstractUser):
-    dni = models.CharField(max_length=12)
+    dni = models.CharField(max_length=12,unique=True)
     email = models.CharField(max_length=254,unique=True)
     
     
