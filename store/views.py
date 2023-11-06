@@ -29,7 +29,7 @@ def storeoptions(request):
     return render(request,template_name="store.html")
 
 
-
+@login_required
 #Sale cierra sesion
 def exit(request):
     logout(request)
@@ -118,7 +118,7 @@ def sellproducts(request):
     return render(request,template_name="sellproduct.html")
 
 
-
+@login_required
 def postproduct(request):
     
     
@@ -157,7 +157,7 @@ def postproduct(request):
         
 
 
-
+@login_required
 def showchats(request):
     contact = Mensaje.objects.filter(to=request.user.email)
     
@@ -184,6 +184,7 @@ def showchats(request):
 
     return render(request,template_name="conversaciones.html",context={"contact":contact})
 
+@login_required
 def showcontact(request,id):
     
     
@@ -220,7 +221,7 @@ def showcontact(request,id):
         #Redirecciona la pagina de manera recursiva
         return redirect(reverse('CONTACTt', kwargs={'id':id}))
         
-
+@login_required
 def chatusers(request):
     
     if request.method == "GET":

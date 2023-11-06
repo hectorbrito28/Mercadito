@@ -89,7 +89,7 @@ def most_viewed(request):
     return render(request,template_name="Most_viewed.html")
 
 
-
+@login_required
 def añadirlistadeseos(request):
     
     if request.method == "GET":
@@ -109,7 +109,7 @@ def añadirlistadeseos(request):
         
         return render(request,template_name="buyproduct.html",context={"product":producto})
     
-
+@login_required
 def eliminarlistadeseos(request):
     
     if request.method == "POST":
@@ -132,7 +132,7 @@ def eliminarlistadeseos(request):
 
 
 
-
+@login_required
 def comprafunct(request):
     
     if request.method == "POST":
