@@ -83,8 +83,6 @@ def register_store(request):
     
     else:
         
-        try:
-            
             ModelUseractually = get_user_model()
             
             if request.POST["password1"] == request.POST["password2"]:
@@ -109,10 +107,7 @@ def register_store(request):
             else:
                 messages.error(request,"Las contraseñas no coinciden")
                 return redirect("Register")
-                    
-        except:
-            messages.error(request,"El nombre de usuario,email o dni ya existe en la base de datos")
-            return redirect("Register")
+        
     
 
 @login_required
