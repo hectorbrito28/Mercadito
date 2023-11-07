@@ -130,7 +130,7 @@ STATIC_URL = 'static/'
 if not DEBUG:
     # Tell Django to copy statics to the `staticfiles` directory
     # in your application directory on Render.
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static','static-only')
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
     # Turn on WhiteNoise storage backend that takes care of compressing static files
     # and creating unique names for each version so they can safely be cached forever.
@@ -152,7 +152,7 @@ MEDIA_ROOT = os.path.join(os.path.dirname(os.path.dirname(__file__)),"static","m
 
 
 #SE DICE QUE LOS ARCHIVOS ESTATICOS ESTARAN EN STATIC/STATIC-ONLY
-STATIC_ROOT = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'static', 'static-only')
+#STATIC_ROOT = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'static', 'static-only')
 
 
 
