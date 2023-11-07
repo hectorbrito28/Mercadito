@@ -87,22 +87,27 @@ def register_store(request):
             
             if request.POST["password1"] == request.POST["password2"]:
                 
-                username = request.POST["username"]
-                password = request.POST["password1"]
-                email = request.POST["email"]
-                dni = request.POST["dni"]
-                
-                
-                newuser = ModelUseractually.objects.create_user(username=username,password=password,email=email,dni=dni)
-                
-                print(newuser)
-                
-                newuser.save()
-                     
+                try:
+                    username = request.POST["username"]
+                    password = request.POST["password1"]
+                    email = request.POST["email"]
+                    dni = request.POST["dni"]
                     
-                messages.success(request,"Tu cuenta ha sido creada exitosamente")
                     
-                return redirect("StoreOptions")
+                    newuser = ModelUseractually.objects.create_user(username=username,password=password,email=email,dni=dni)
+                    
+                    print(newuser)
+                    
+                    newuser.save()
+                        
+                        
+                    messages.success(request,"Tu cuenta ha sido creada exitosamente")
+                        
+                    return redirect("StoreOptions")
+                
+                except:
+                    messages.error(request,"El nombre de usuario,dni o email ya existe en la base de datos")
+                    
                 
             else:
                 messages.error(request,"Las contraseñas no coinciden")
