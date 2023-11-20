@@ -1,0 +1,34 @@
+{% extends 'layouts/base2.html' %}
+
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell product</title>
+</head>
+<body>
+    <h1>Que producto deseas poner en venta?</h1>
+
+
+    
+        <form action="" method="POST" enctype="multipart/form-data" >
+
+            {%csrf_token%}
+    
+            {{form.as_p}}
+    
+            <button>Vender</button>
+    
+    
+        </form>
+    
+
+</body>
+</html>
+
+
+{% endblock %}

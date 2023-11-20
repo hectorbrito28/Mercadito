@@ -1,0 +1,33 @@
+{% extends 'layouts/base2.html' %}
+
+{% block content %}
+
+
+<div class="position-absolute top-50 end-0 translate-middle-y">
+    <div class="container-fluid  card mt-5" style="width: 20rem;">
+        <ul class="list-group list-group-flush">
+
+{% for c in contact %}
+        
+            {% if c.author.id == request.user.id %}
+
+                <form action="{% url 'CONTACTt' c.author.id %}">
+                    <button class="list-group-item "><strong>Tu-</strong><strong>My email:</strong>  {{c.author.email}}</button> 
+                </form>
+
+            {% else %}
+                <form action="{% url 'CONTACTt' c.author.id %}">
+                    <button class="list-group-item "> <strong>Username:</strong> {{c.author.username}}  <strong>Email:</strong>  {{c.author.email}}</button> 
+                </form>
+
+            {% endif %}
+    
+  
+{% endfor %}
+        </ul>
+    </div>
+</div>
+
+{% endblock %}
+
+#HACER CHAT Y QUE SE pueda enviar mensajes

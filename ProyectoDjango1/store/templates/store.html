@@ -1,0 +1,50 @@
+{% extends "layouts/navegation.html" %}
+
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercadito Store</title>
+</head>
+<body>
+    <h1>Tienda-Almacen</h1>
+
+
+    <h2>Puedes ingresar o registrarte </h2>
+    <ul>
+
+        {% if request.user.is_authenticated %}
+        <li>
+            <a href="{% url 'ACCOUNT' %}">Account</a>
+        </li>
+
+        {% else %}
+        <li>
+            <a href="{% url 'LOGINSTORE' %}">Login</a>
+        </li>
+
+        <li>
+            <a href="{% url 'Register' %}">Register</a>
+        </li>
+
+        {% endif %}
+        
+
+       
+    
+    </ul>
+
+
+    {% for m in messages %}
+        <p>{{m}}</p>
+    
+    {% endfor %}
+
+</body>
+</html>
+
+{% endblock %}

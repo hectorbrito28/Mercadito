@@ -1,0 +1,58 @@
+{% extends 'layouts/base2.html' %}
+
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    
+
+<div class="container">
+    <div class="m-0  vh-100 row justify-content-center align-items-center" >
+        <div class="card-header  alert alert-info mt-5">
+            Usuario: {{autor.username}}      Email:{{autor.email}}
+        </div>
+        
+            <div class="card card-body" style="height:300px;width:140px;overflow:auto;scrollbar-base-color:gold;font-family:sans-serif;padding:10px;" >
+               
+            {% for m in me %}
+                     
+
+                        {% if m.author == request.user %}
+                            <li class="alert alert-success" >tu:{{m.content}}  <h6>{{m.datesent}}</h6></li>
+
+                        {% else %}
+                            <li class="alert alert-dark" >{{m.content}}  <h6>{{m.datesent}}</h6></li>
+                        
+                        {% endif %}
+                        
+
+                      
+
+                    
+
+            {% endfor %}
+
+                    
+                </div>
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="text" name="ms" class="list-group-item border border-dark ">
+
+                    <button value={{autor.email}} name="emailto" class="btn btn-secodary">Enviar</button>
+
+                </form>
+               
+        
+    </div>
+</div>
+
+</body>
+</html>
+
+{% endblock %}

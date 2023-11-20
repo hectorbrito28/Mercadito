@@ -1,0 +1,33 @@
+{% extends 'layouts/base2.html' %}
+
+
+{% block content %}
+
+
+
+<div class="container">
+
+    <div class="mt-5">
+        <form method="POST" class="card card-body">
+
+            {% csrf_token %}
+
+            {{form}}
+
+            <button>Enviar</button>
+
+        </form>
+    </div>
+
+</div>
+
+<li>
+   <a href="{% url 'CHATS' %}">Ver mensajes recibidos</a>
+
+</li>
+
+{% for m in messages %}
+    <p>{{m}}</p>
+{% endfor %}
+
+{% endblock %}

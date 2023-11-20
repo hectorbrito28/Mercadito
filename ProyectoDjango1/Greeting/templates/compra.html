@@ -1,0 +1,32 @@
+{% extends 'layouts/navegation.html' %}
+
+{% block content2 %}
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{product.name}}</title>
+    </head>
+    <body>
+
+        <div  class=" m-0  vh-100 row justify-content-center align-items-center" >
+
+            <div class="card border-success mb-3" style="max-width: 18rem;">
+                <div class="card-header bg-transparent border-success">Solicitud de compra enviada a: {{product.belongs.username}}.</div>
+                <div class="card-body text-success">
+                <h5 class="card-title">Solicitud enviada exitosamente a el email : {{product.belongs.email}}.</h5>
+                <p class="card-text">Tu solicitud de compra ha sido enviada a {{product.belongs.username}} para comprar el producto : {{product.name}}.</p>
+                </div>
+                <div class="card-footer bg-transparent border-success">Por favor esperar a que el vendedor se comunique con usted o puede comunicarse a traves de su email.</div>
+
+                <a href="{% url 'Welcome' %}" class="card-link">Volver al inicio</a>
+            </div>
+        </div>
+        
+    </body>
+    </html>
+{% endblock %}
+
+
